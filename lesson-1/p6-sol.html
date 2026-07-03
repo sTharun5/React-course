@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+        <script src="https://unpkg.com/supersimpledev/react.js"></script>
+        <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+        <div class="container"></div>
+
+        <script type="text/babel">
+            const container = document.querySelector('.container');
+            const root = ReactDOM.createRoot(container);
+            setInterval(() => {
+                const str = dayjs().format('HH:mm:ss');
+                const div = (
+                    <div>
+                        <h1>{str}</h1>
+                    </div>
+                );
+               root.render(div);
+            }, 1000);
+        </script>
+    </body>
+</html>
+
+// one imp thing dont create root again and again.Create and store it and reuse 

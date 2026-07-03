@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chatbot</title>
+    </head>
+    <body>
+        <div class="container"></div>
+        <script
+            src="https://unpkg.com/supersimpledev/react.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/supersimpledev/react-dom.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+            function ChatInput() {
+                return (
+                    <>
+                        <input
+                            type="textbox"
+                            placeholder="send a message to the chatbot"
+                            size="30"
+                        />
+                        <button>send</button>
+                    </>
+                );
+            }
+
+            function ChatMessage({ message, sender }) {
+                // message = props.message
+                // props is the javascript object conataining the values passed as attributes
+                // const { message } = props;
+
+                // if (sender === 'robot') {
+                //     return (
+                //         <div>
+                //          <img src="robot.png" alt="robot image" width="50" />
+                //             {message}
+
+                //         </div>
+                //     );
+                // }
+                return (
+                    <div>
+                        {sender === 'robot' && (
+                            <img src="robot.png" alt="robot image" width="50" />
+                        )}
+                        {message}
+                        {sender === 'user' && (
+                            <img src="user.png" alt="user image" width="50" />
+                        )}
+                    </div>
+                );
+            }
+            const container = document.querySelector('.container');
+            const app = (
+                <>
+                    <ChatInput />
+                    <ChatMessage message="hello chatbot" sender="user" />
+                    <ChatMessage
+                        message="hello! how can I help"
+                        sender="robot"
+                    />
+                    <ChatMessage
+                        message="can you get me today dates?"
+                        sender="user"
+                    />
+                    <ChatMessage message="Today is july 4" sender="robot" />
+                    <ChatMessage
+                        message="How about a flip a coin"
+                        sender="user"
+                    />
+                    <ChatMessage
+                        message="Sure, you got Tails!"
+                        sender="robot"
+                    />
+                </>
+            );
+            ReactDOM.createRoot(container).render(app);
+        </script>
+    </body>
+</html>

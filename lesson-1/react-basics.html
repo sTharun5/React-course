@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Basics</title>
+</head>
+<body>
+        <div class="container">
+        </div>
+
+        <script src="https://unpkg.com/supersimpledev/react.js" crossorigin></script>
+        <script src="https://unpkg.com/supersimpledev/react-dom.js" crossorigin></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+
+            const container = document.querySelector('.container');
+
+            const div = (
+                <div>
+                    <button>button</button>
+                    <p> hello , {2+2}</p>
+                </div>
+            );
+
+            ReactDOM.createRoot(container).render(div);
+        </script>
+</body>
+</html>

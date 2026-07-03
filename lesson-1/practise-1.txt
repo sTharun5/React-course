@@ -1,0 +1,22 @@
+1.Using React, display a button on the website with the text:
+
+"Good job!"
+
+inside the button.
+
+2.
+Using React, display a paragraph with the text:
+
+"My name is [NAME]"
+
+on the website.
+
+Replace [NAME] with your own name.
+
+3.Create the design shown on the right and display it on the website using React.
+
+The design should contain:
+
+Cotton socks
+Price: $10
+Add to Cart button

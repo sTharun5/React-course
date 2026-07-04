@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chatbot</title>
+    </head>
+
+    <body>
+        <div class="container"></div>
+        <script
+            src="https://unpkg.com/supersimpledev/react.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/supersimpledev/react-dom.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+            const { useState } = React;
+            function ChatInput() {
+                return (
+                    <>
+                        <input
+                            type="textbox"
+                            placeholder="send a message to the chatbot"
+                            size="30"
+                        />
+                        <button>send</button>
+                    </>
+                );
+            }
+
+            function ChatMessage({ message, sender }) {
+                return (
+                    <div>
+                        {sender === 'robot' && (
+                            <img src="robot.png" alt="robot image" width="50" />
+                        )}
+                        {message}
+                        {sender === 'user' && (
+                            <img src="user.png" alt="user image" width="50" />
+                        )}
+                    </div>
+                );
+            }
+
+            function ChatMessages() {
+                const chatmessages = [
+                    {
+                        message: 'hello chatbot',
+                        sender: 'user',
+                        key: crypto.randomUUID(),
+                    },
+                    {
+                        message: 'hello! how can I help',
+                        sender: 'robot',
+                        key: crypto.randomUUID(),
+                    },
+                    {
+                        message: 'can you get me today dates?',
+                        sender: 'user',
+                        key: crypto.randomUUID(),
+                    },
+                    {
+                        message: 'Today is july 4',
+                        sender: 'robot',
+                        key: crypto.randomUUID(),
+                    },
+                    {
+                        message: 'How about a flip a coin',
+                        sender: 'user',
+                        key: crypto.randomUUID(),
+                    },
+                    {
+                        message: 'Sure, you got Tails!',
+                        sender: 'robot',
+                        key: crypto.randomUUID(),
+                    },
+                ];
+
+                function sendMessage(){
+                    console.log("hello");
+                }
+
+
+                return (
+                    <>
+                        <button onClick={sendMessage} >
+                            send message
+                        </button>
+                        {chatmessages.map((chatmessage) => {
+                            return (
+                                <ChatMessage
+                                    key={chatmessage.key}
+                                    message={chatmessage.message}
+                                    sender={chatmessage.sender}
+                                />
+                            );
+                        })}
+                    </>
+                );
+            }
+
+            const container = document.querySelector('.container');
+
+            function App() {
+                return (
+                    <>
+                        <ChatInput />
+                        <ChatMessages />
+                    </>
+                );
+            }
+            ReactDOM.createRoot(container).render(<App />);
+        </script>
+    </body>
+</html>

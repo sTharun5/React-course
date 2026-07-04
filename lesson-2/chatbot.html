@@ -58,6 +58,33 @@
                 );
             }
             const container = document.querySelector('.container');
+
+            function App() {
+                return (
+                    <>
+                        <ChatInput />
+                        <ChatMessage message="hello chatbot" sender="user" />
+                        <ChatMessage
+                            message="hello! how can I help"
+                            sender="robot"
+                        />
+                        <ChatMessage
+                            message="can you get me today dates?"
+                            sender="user"
+                        />
+                        <ChatMessage message="Today is july 4" sender="robot" />
+                        <ChatMessage
+                            message="How about a flip a coin"
+                            sender="user"
+                        />
+                        <ChatMessage
+                            message="Sure, you got Tails!"
+                            sender="robot"
+                        />
+                    </>
+                );
+            }
+            /*
             const app = (
                 <>
                     <ChatInput />
@@ -81,7 +108,8 @@
                     />
                 </>
             );
-            ReactDOM.createRoot(container).render(app);
+            */
+            ReactDOM.createRoot(container).render(<App />);
         </script>
     </body>
 </html>

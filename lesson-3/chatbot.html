@@ -16,19 +16,45 @@
             src="https://unpkg.com/supersimpledev/react-dom.js"
             crossorigin
         ></script>
+
+        <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
         <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
         <script type="text/babel">
             const { useState } = React;
-            function ChatInput() {
+            function ChatInput({ curr, updateFunc }) {
+                const [currText, setCurrText] = useState('');
+
+                function getText(event) {
+                    setCurrText(event.target.value);
+                }
+
+                function sendMessage() {
+                    const store = [ ...curr,{ message: currText,sender: 'user',key: crypto.randomUUID() }];
+                    updateFunc(store);
+
+                    updateFunc([
+                        ...store,
+                        {
+                            message: Chatbot.getResponse(currText),
+                            sender: 'robot',
+                            key: crypto.randomUUID(),
+                        },
+                    ]);
+                    setCurrText('');
+                }
+
                 return (
                     <>
                         <input
                             type="textbox"
                             placeholder="send a message to the chatbot"
                             size="30"
+                            onChange={getText}
+                            value={currText}
                         />
-                        <button>send</button>
+
+                        <button onClick={sendMessage}>send</button>
                     </>
                 );
             }
@@ -47,53 +73,10 @@
                 );
             }
 
-            function ChatMessages() {
-                const chatmessages = [
-                    {
-                        message: 'hello chatbot',
-                        sender: 'user',
-                        key: crypto.randomUUID(),
-                    },
-                    {
-                        message: 'hello! how can I help',
-                        sender: 'robot',
-                        key: crypto.randomUUID(),
-                    },
-                    {
-                        message: 'can you get me today dates?',
-                        sender: 'user',
-                        key: crypto.randomUUID(),
-                    },
-                    {
-                        message: 'Today is july 4',
-                        sender: 'robot',
-                        key: crypto.randomUUID(),
-                    },
-                    {
-                        message: 'How about a flip a coin',
-                        sender: 'user',
-                        key: crypto.randomUUID(),
-                    },
-                    {
-                        message: 'Sure, you got Tails!',
-                        sender: 'robot',
-                        key: crypto.randomUUID(),
-                    },
-                ];
-
-                function sendMessage() {
-                    chatmessages.push({
-                        message: 'test',
-                        sender: 'user',
-                        key: crypto.randomUUID(),
-                    });
-                    console.log(chatmessages);
-                }
-
+            function ChatMessages({ curr, updateFunc }) {
                 return (
                     <>
-                        <button onClick={sendMessage}>send message</button>
-                        {chatmessages.map((chatmessage) => {
+                        {curr.map((chatmessage) => {
                             return (
                                 <ChatMessage
                                     key={chatmessage.key}
@@ -109,10 +92,13 @@
             const container = document.querySelector('.container');
 
             function App() {
+                
+                const [curr, updateFunc] = React.useState([]);
+
                 return (
                     <>
-                        <ChatInput />
-                        <ChatMessages />
+                        <ChatInput curr={curr} updateFunc={updateFunc} />
+                        <ChatMessages curr={curr} updateFunc={updateFunc} />
                     </>
                 );
             }

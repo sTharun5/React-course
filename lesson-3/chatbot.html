@@ -22,26 +22,76 @@
 
         <script type="text/babel">
             const { useState } = React;
-            function ChatInput({ curr, updateFunc }) {
+            function ChatInput({ curr, updateFunc , isLoading, setIsLoading}) {
                 const [currText, setCurrText] = useState('');
 
                 function getText(event) {
                     setCurrText(event.target.value);
                 }
 
-                function sendMessage() {
-                    const store = [ ...curr,{ message: currText,sender: 'user',key: crypto.randomUUID() }];
+                async function sendMessage() {
+
+
+                    if(isLoading == true)return;
+                    const text =  currText;
+                    if(text.length == 0)return;
+                    setCurrText('');
+
+                    const store = [
+                        ...curr,
+                        {
+                            message: text,
+                            sender: 'user',
+                            key: crypto.randomUUID(),
+                        },
+                    ];
                     updateFunc(store);
+
 
                     updateFunc([
                         ...store,
                         {
-                            message: Chatbot.getResponse(currText),
+                            message: "waiting...",
                             sender: 'robot',
                             key: crypto.randomUUID(),
                         },
                     ]);
-                    setCurrText('');
+
+                     console.log('waiting...');
+                     let response;
+
+                     setIsLoading(true);
+                     // Chatbot.getResponse(currText) no latency
+                     try{
+                      response = await Chatbot.getResponseAsync(text);
+                    }
+                    catch(err){
+                      response = "Sorry, something went wrong.";
+                    }
+                    finally{
+                    setIsLoading(false);
+                    }
+
+                    updateFunc([
+                        ...store,
+                        {
+                            message: response,
+                            sender: 'robot',
+                            key: crypto.randomUUID(),
+                        },
+                    ]);
+
+                }
+
+                // onKeyDown is a event... like onChange onClick
+
+                function enterDetect(event) {
+                    if (event.code == 'Enter') {
+                        sendMessage();
+                    }
+                    if (event.code == 'Escape') {
+                        setCurrText('');
+                    }
                 }
 
                 return (
@@ -52,9 +102,11 @@
                             size="30"
                             onChange={getText}
                             value={currText}
+                            onKeyDown={enterDetect}
+                            disabled={isLoading}
                         />
 
-                        <button onClick={sendMessage}>send</button>
+                        <button onClick={sendMessage} disabled={isLoading} >send</button>
                     </>
                 );
             }
@@ -92,12 +144,12 @@
             const container = document.querySelector('.container');
 
             function App() {
-                
                 const [curr, updateFunc] = React.useState([]);
+                const [isLoading,setIsLoading] = useState(false);
 
                 return (
                     <>
-                        <ChatInput curr={curr} updateFunc={updateFunc} />
+                        <ChatInput curr={curr} updateFunc={updateFunc} isLoading={isLoading} setIsLoading={setIsLoading}/>
                         <ChatMessages curr={curr} updateFunc={updateFunc} />
                     </>
                 );

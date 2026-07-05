@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container"></div>
+
+        <script
+            src="https://unpkg.com/supersimpledev/react.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/supersimpledev/react-dom.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+            function Counter() {
+                const [count, setCount] = React.useState(0);
+                function increment() {
+                    setCount(count + 1);
+                    console.log('clicked');
+                }
+                return (
+                    <>
+                        {count == 1 || count == 0 ? (
+                            <button onClick={increment}>
+                                clicked {count} time
+                            </button>
+                        ) : (
+                            <button onClick={increment}>
+                                clicked {count} times
+                            </button>
+                        )}
+                    </>
+                );
+            }
+            function App() {
+                return (
+                    <>
+                    <Counter/>
+                    <Counter/>
+                    </>
+                );
+            }
+
+            const container = document.querySelector('.container');
+            ReactDOM.createRoot(container).render(<App />);
+        </script>
+    </body>
+</html>

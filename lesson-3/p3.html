@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container"></div>
+
+        <script
+            src="https://unpkg.com/supersimpledev/react.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/supersimpledev/react-dom.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+
+            function App() {
+                const[text , setText] = React.useState('');
+                function change(event) {
+                    let val =  event.target.value;
+                    setText(val);
+                }
+                function reset(){
+                    setText('');
+                }
+                function example(){
+                    setText('Tharun');
+                }
+                return (
+                    <>
+                    <input type="text" placeholder = "Type a name here" onChange = {change} value = {text}/>
+                    <button onClick = {reset}>reset</button>
+                    <button onClick = {example} >example</button>
+                    {text != '' &&  (<p>Hello {text}</p>)}
+                    {text == '' && (<p>Hello</p>)}
+
+
+                    </>
+                );
+            }
+
+            const container = document.querySelector('.container');
+            ReactDOM.createRoot(container).render(<App />);
+        </script>
+    </body>
+</html>

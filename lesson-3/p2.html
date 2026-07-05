@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container"></div>
+
+        <script
+            src="https://unpkg.com/supersimpledev/react.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/supersimpledev/react-dom.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+        <script type="text/babel">
+            function Counter({ count, setCount }) {
+                function increment() {
+                    count = count + 1;
+                    setCount(count);
+                    console.log('clicked');
+                }
+                return (
+                    <>
+                        {count == 1 || count == 0 ? (
+                            <button onClick={increment}>
+                                clicked {count} time
+                            </button>
+                        ) : (
+                            <button onClick={increment}>
+                                clicked {count} times
+                            </button>
+                        )}
+
+
+                    </>
+                );
+            }
+            function App() {
+                const [count, setCount] = React.useState(0);
+                function reset(){
+                    setCount(0);
+                }
+                return (
+                    <>
+                        <Counter count={count} setCount={setCount} />
+                        <Counter count={count} setCount={setCount} />
+                        <button onClick= {reset} >reset</button>
+                    </>
+                );
+            }
+
+            const container = document.querySelector('.container');
+            ReactDOM.createRoot(container).render(<App />);
+        </script>
+    </body>
+</html>

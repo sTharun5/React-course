@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import ChatMessage from "./ChatMessage";
-import '../App.css'
+import './ChatMessages.css'
+
 
 function ChatMessages({ curr , useref , isTop}) {
 
      useEffect(() => {
         const element = useref.current;
 
-            
+
 
 
 

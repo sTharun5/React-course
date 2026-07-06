@@ -1,6 +1,6 @@
 import {  useState  } from 'react';
 import {Chatbot} from 'supersimpledev'
-import '../App.css'
+import './ChatInput.css'
 
 
 

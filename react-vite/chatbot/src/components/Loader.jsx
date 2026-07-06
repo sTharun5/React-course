@@ -1,4 +1,4 @@
- import '../App.css'
+ import './Loader.css'
 
  function Loader() {
      return (

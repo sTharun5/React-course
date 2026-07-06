@@ -1,0 +1,27 @@
+.footer {
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer div {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.footer div:hover {
+    background-color: rgb(20, 110, 68);
+    transform : translateY(-2px);
+}
+.footer div:active {
+    transform: scale(0.98);
+}

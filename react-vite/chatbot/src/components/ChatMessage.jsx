@@ -1,7 +1,7 @@
 import Loader from "./Loader";
 import robotProfile from '../assets/robot.png'
 import userProfile from '../assets/user.png'
-import '../App.css'
+import './ChatMessage.css'
 
 function ChatMessage({ message, sender }) {
             return (

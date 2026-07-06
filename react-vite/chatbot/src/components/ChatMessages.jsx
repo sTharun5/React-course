@@ -7,9 +7,18 @@ function ChatMessages({ curr , useref , isTop}) {
      useEffect(() => {
         const element = useref.current;
 
+            
+
+
+
+
         if (element) {
             element.scrollTop = element.scrollHeight;
         }
+
+         console.log({
+        afterScrollTop: element.scrollTop,
+    });
     }, [curr, isTop, useref]);
 
             return (

@@ -2,6 +2,7 @@ import { useState , useRef } from 'react'
 import ChatInput from './components/ChatInput';
 import ChatMessages from './components/ChatMessages';
 import Footer from './components/Footer';
+import Welcome from './components/Welcome'
 
 import './App.css'
 
@@ -14,8 +15,13 @@ function App() {
 
 
             return (
+                <>
+
                 <div className="chatbot-container">
+                     <Welcome curr={curr}></Welcome>
+
                     <div className={isTop ? "chatbot-box-top" : "chatbot-box" } ref={refer}>
+
 
                         <ChatMessages curr={curr}  useref={useref} isTop = {isTop}/>
                         <ChatInput
@@ -28,6 +34,7 @@ function App() {
                     </div>
                     <Footer isTop = {isTop} setIsTop ={setIsTop} />
                 </div>
+                </>
             );
         }
 

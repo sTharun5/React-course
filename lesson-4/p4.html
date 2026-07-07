@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: grey;
+        }
+
+        .btn {
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border-width: 1px;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js" crossorigin></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js" crossorigin></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+
+        function App() {
+            const [count, setCount] = React.useState(0);
+            const curr = React.useRef(null);
+
+            function increment() {
+                const val = count + 1;
+                setCount(val);
+        }
+
+            return (
+                <div className="container">
+                    <button className="btn" onClick={increment} > clicked {count} times</button>
+                    <button className="btn" onClick={()=>{setCount(0)}}>reset</button>
+                    <button className="btn"  onClick={()=>{
+
+                        if(curr.current != null){
+                            return;
+                        }
+                        curr.current = setInterval(() => {
+                             setCount(val=>val+1);
+                        }, 1000);
+
+                    }}>auto click</button>
+                    <button className="btn" onClick= {()=>{
+                        clearInterval(curr.current);
+                        curr.current = null;
+
+                    }}>stop auto click</button>
+                </div>
+            );
+        }
+
+
+
+        const root = document.querySelector(".root");
+        ReactDOM.createRoot(root).render(<App />);
+    </script>
+</body>
+
+</html>

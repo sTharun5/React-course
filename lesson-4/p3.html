@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+        .button-on{
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border-width: 1px;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    .button-off{
+     background-color: rgb(220, 53, 69);
+     color: white;
+     border-width: 1px;
+     border: none;
+     padding: 12px 20px;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+    </style>
+</head>
+<body>
+<div class="root"></div>
+<script src="https://unpkg.com/supersimpledev/react.js" crossorigin></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js" crossorigin></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+ <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+<script type="text/babel">
+    function Clock(){
+         const [clock,setClock] = React.useState(dayjs().format('HH:mm:ss'));
+         let i=0;
+         React.useEffect(()=>{
+            // setInterval is a infinte time running function executing it one time is enough
+            const id = setInterval(() => {
+                setClock(dayjs().format('HH:mm:ss'));
+            }, 1000);
+            console.log("click");
+            return ()=>{
+                clearInterval(id);
+            }
+         },[])
+        return (
+            <div>
+                {clock}
+            </div>
+        );
+    }
+
+    const root = document.querySelector(".root");
+    ReactDOM.createRoot(root).render(<Clock/>);
+</script>
+</body>
+
+</html>

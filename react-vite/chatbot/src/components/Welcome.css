@@ -1,0 +1,13 @@
+.welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 90px ;
+}
+
+.head {
+    font-size: 32px;
+    color: rgb(25,135,84);
+    font-weight: bolder;
+
+}

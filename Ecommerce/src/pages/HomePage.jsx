@@ -21,10 +21,10 @@ function HomePage(){
       </button>
     </div>
     <div className="right-section">
-      <a className="orders-link header-link" href="/orders">
+      <a className="orders-link header-link" href="/Orders">
         <span className="orders-text">Orders</span>
       </a>
-      <a className="cart-link header-link" href="/checkout">
+      <a className="cart-link header-link" href="/Checkout">
         <img className="cart-icon" src="images/icons/cart-icon.png" />
         <div className="cart-quantity">3</div>
         <div className="cart-text">Cart</div>

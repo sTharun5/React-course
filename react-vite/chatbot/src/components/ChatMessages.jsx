@@ -12,7 +12,8 @@ function useAutoScroll(dependencies){
 return useref;
 }
 
-function ChatMessages({ curr }) {
+function ChatMessages({curr}) {
+            console.log();
             const useref = useAutoScroll(curr);
             return (
                 <div className="chat-messages-container" ref={useref}>
@@ -22,6 +23,7 @@ function ChatMessages({ curr }) {
                                 key={chatmessage.key}
                                 message={chatmessage.message}
                                 sender={chatmessage.sender}
+                                storeTime={chatmessage.storeTime}
                             />
                         );
                     })}

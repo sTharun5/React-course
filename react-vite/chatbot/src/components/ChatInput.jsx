@@ -1,4 +1,5 @@
 import {  useState  } from 'react';
+import dayjs from "dayjs";
 import {Chatbot} from 'supersimpledev'
 import './ChatInput.css'
 
@@ -6,6 +7,9 @@ import './ChatInput.css'
 
 function ChatInput({ curr, updateFunc, isLoading, setIsLoading }) {
             const [currText, setCurrText] = useState('');
+
+             const time = dayjs().valueOf();
+             const value = dayjs(time).format("h:mma");
 
             function getText(event) {
                 setCurrText(event.target.value);
@@ -23,18 +27,21 @@ function ChatInput({ curr, updateFunc, isLoading, setIsLoading }) {
                         message: text,
                         sender: 'user',
                         key: crypto.randomUUID(),
+                        storeTime:value
                     },
                 ];
                 updateFunc(store);
 
-                updateFunc([
+               const next = [
                     ...store,
                     {
                         message: 'waiting...',
                         sender: 'robot',
                         key: crypto.randomUUID(),
+                        storeTime:value
                     },
-                ]);
+                ];
+                updateFunc(next);
 
                 console.log('waiting...');
                 let response;
@@ -50,14 +57,16 @@ function ChatInput({ curr, updateFunc, isLoading, setIsLoading }) {
                     setIsLoading(false);
                 }
 
-                updateFunc([
+               const next2 = [
                     ...store,
                     {
                         message: response,
                         sender: 'robot',
                         key: crypto.randomUUID(),
+                        storeTime:value
                     },
-                ]);
+                ];
+                updateFunc(next2);
             }
 
             // onKeyDown is a event... like onChange onClick
@@ -91,6 +100,10 @@ function ChatInput({ curr, updateFunc, isLoading, setIsLoading }) {
                     >
                         send
                     </button>
+
+                    <button onClick={()=>{
+                        updateFunc([]);
+                    }} className="send-button">clear</button>
 
                 </div>
             );

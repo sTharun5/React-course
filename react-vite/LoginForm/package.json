@@ -1,20 +1,17 @@
 {
-  "name": "chatbot",
+  "name": "loginform",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "mktest":"mkdir test",
-    "rmtest":"rmdir test",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "supersimpledev": "^8.6.4"
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

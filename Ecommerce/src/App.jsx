@@ -1,5 +1,5 @@
  import HomePage from "./pages/HomePage";
- import { Checkout } from "./pages/Checkout";
+ import { Checkout } from "./pages/Checkout/Checkout";
  import { Route } from "react-router";
  import { Routes } from "react-router";
  import { Orders } from "./pages/Orders";

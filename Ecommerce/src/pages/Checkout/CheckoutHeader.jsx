@@ -1,8 +1,10 @@
 import { Link } from 'react-router';
 import './CheckoutHeader.css';
+import checkoutLock from '../../assets/icons/checkout-lock-icon.png';
 export function CheckoutHeader() {
     return (
         <>
+        <link rel="shortcut icon" href="/images/cart-favicon.png" type="image/x-icon" />
             <div className="checkout-header">
                 <div className="header-content">
                     <div className="checkout-header-left-section">
@@ -22,7 +24,7 @@ export function CheckoutHeader() {
                         )
                     </div>
                     <div className="checkout-header-right-section">
-                        <img src="images/icons/checkout-lock-icon.png" />
+                        <img src={checkoutLock} />
                     </div>
                 </div>
             </div>

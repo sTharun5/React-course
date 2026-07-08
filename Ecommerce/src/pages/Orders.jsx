@@ -1,9 +1,11 @@
 import { Header } from '../components/Header';
 import { Link } from 'react-router';
+import buyAgain from '../assets/icons/buy-again.png'
 import './Orders.css'
 export function Orders(){
     return(
         <>
+        <link rel="shortcut icon" href="/images/orders-favicon.png" type="image/x-icon" />
         <Header></Header>
 <div class="orders-page">
   <div class="page-title">Your Orders</div>
@@ -40,7 +42,7 @@ export function Orders(){
             Quantity: 1
           </div>
           <button class="buy-again-button button-primary">
-            <img class="buy-again-icon" src="images/icons/buy-again.png" />
+            <img class="buy-again-icon" src={buyAgain} />
             <span class="buy-again-message">Add to Cart</span>
           </button>
         </div>
@@ -65,7 +67,7 @@ export function Orders(){
             Quantity: 2
           </div>
           <button class="buy-again-button button-primary">
-            <img class="buy-again-icon" src="images/icons/buy-again.png" />
+            <img class="buy-again-icon" src={buyAgain} />
             <span class="buy-again-message">Add to Cart</span>
           </button>
         </div>
@@ -110,7 +112,7 @@ export function Orders(){
             Quantity: 2
           </div>
           <button class="buy-again-button button-primary">
-            <img class="buy-again-icon" src="images/icons/buy-again.png" />
+            <img class="buy-again-icon" src={buyAgain} />
             <span class="buy-again-message">Add to Cart</span>
           </button>
         </div>

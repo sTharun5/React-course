@@ -1,0 +1,15 @@
+.container-PageNotFound{
+   background-color: black;
+   display: flex;
+   height: 100vh;
+   justify-content: center;
+   align-items: center;
+}
+.page-content{
+    
+    color: green;
+    font-weight: bolder;
+    font-size: 40px;
+    text-decoration:underline;
+
+}
